@@ -1,2 +1,0 @@
-::1 - - [16/Dec/2020:13:20:57 +0000] "GET / HTTP/1.1" 200 25 "-" "PostmanRuntime/7.26.8"
-::1 - - [16/Dec/2020:14:14:43 +0000] "GET /signup HTTP/1.1" 200 25 "-" "PostmanRuntime/7.26.8"
