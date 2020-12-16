@@ -1,0 +1,74 @@
+<div class="navbar-fixed">
+  <nav>
+    <div class="nav-wrapper indigo darken-3" style="padding: 0 2rem">
+      <a href="/" class="brand-logo">Inkubator</a>
+      <a href="#" data-target="mobile-demo" class="sidenav-trigger">
+        <i class="material-icons">menu</i>
+      </a>
+      <ul class="right hide-on-med-and-down">
+        <li>
+          <a class="<%= path === '/login' ? 'active' : '' %>" href="/login">
+            SIGNIN
+          </a>
+        </li>
+        <li>
+          <a class="<%= path === '/signup' ? 'active' : '' %>" href="/signup">
+            SIGNUP
+          </a>
+        </li>
+        <li>
+          <a
+            class="teal darken-1"
+            target="_blank"
+            href="https://oprec.kolu.web.id/"
+            type="btn"
+          >
+            OPREC KOLU!
+          </a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+</div>
+
+<ul class="sidenav" id="mobile-demo">
+  <div
+    class="valign-wrapper indigo darken-3"
+    style="width: 100%; height: 10rem"
+  >
+    <div class="valign" style="width: 100%">
+      <div class="container">
+        <div class="row" style="margin-bottom: 0">
+          <div class="col s12 m6">
+            <div class="hide-on-small-only">
+              <img class="responsive-img" src="/favicon.ico" alt="Logo KoLU" />
+            </div>
+            <div class="hide-on-med-and-up">
+              <img
+                class="responsive-img"
+                style="height: 8rem"
+                src="/favicon.ico"
+                alt="Logo KoLU"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <li style="margin-top: 1rem">
+    <a class="<%= path === '/login' ? 'active' : '' %>" href="/login">
+      SIGNIN
+    </a>
+  </li>
+  <li>
+    <a class="<%= path === '/signup' ? 'active' : '' %>" href="/signup">
+      SIGNUP
+    </a>
+  </li>
+  <li>
+    <a class="teal darken-1" target="_blank" href="https://oprec.kolu.web.id/">
+      <span class="white-text">OPREC KOLU!</span>
+    </a>
+  </li>
+</ul>

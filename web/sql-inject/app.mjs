@@ -1,33 +1,46 @@
 import path from 'path';
 import fs from 'fs';
 
+import dotenv from 'dotenv';
 import express from 'express';
+import session from 'express-session';
+import flash from 'connect-flash';
 import bodyParser from 'body-parser';
 import helmet from 'helmet';
 import compression from 'compression';
 import morgan from 'morgan';
 
 import authRouter from './routes/auth.mjs';
+import * as errorController from './controllers/error.mjs';
+
+dotenv.config();
 
 /* Setup express extensions & helper middlewares ----- */
 
 const app = express();
 
+app.set('view engine', 'ejs');
+app.set('views', 'views');
+app.use(express.static(path.join(path.resolve(), 'public')));
+
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(session({
+  secret: process.env.SESSION_SECRET,
+  resave: false,
+  saveUninitialized: false,
+}));
+app.use(flash());
 app.use(helmet());
 app.use(compression());
-
 app.use(morgan('combined', {
   stream: fs.createWriteStream(path.resolve('access.log'), { flags: 'a' }),
 }));
 
-app.set('view engine', 'ejs');
-app.set('views', 'dist/views');
-
-app.use(bodyParser.urlencoded({ extended: false }));
-
 /* Setup our middlewares ----------------------------- */
 
 app.use(authRouter);
+app.use(errorController.get404);
+app.use(errorController.serverErrorHandler);
 
 /* Spin up the server -------------------------------- */
 

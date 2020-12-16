@@ -1,0 +1,51 @@
+<%- include('../includes/head.ejs') %>
+</head>
+
+<body>
+	<%- include('../includes/navigation.ejs') %>
+
+	<main class="valign-wrapper" style="width: 100%; height: 100%; position: absolute;">
+    <div class="valign" style="width: 100%;">
+			<div class="container">
+				<div class="row">
+					<div class="col s12 m6 offset-m3">
+						<section class="card">
+							<div class="card-content">
+								<p class="card-title black-text center-align">Sign In</p>
+								<% if (errorMessage) { %>
+									<div class="card-panel small z-depth-0 red darken-1 card-flash">
+										<p class="white-text center-align"><%= errorMessage %></p>
+									</div>
+								<% } %>
+								<form>
+									<div class="input-field s12">
+										<input 
+											id="email" 
+											type="email" 
+											class="validate" 
+											value="<%= oldInput.email %>"
+										>
+										<label for="email">Email</label>
+									</div>
+									<div class="input-field s12">
+										<input 
+											id="password" 
+											type="password" 
+											class="validate" 
+											value="<%= oldInput.password %>"
+										>
+										<label for="password">Password</label>
+									</div>
+								</form>
+								<div class="center-align">
+									<input type="submit" class="btn" value="Sign In">
+								</div>
+							</div>
+						</section>
+					</div>
+				</div>
+			</div>
+    </div>
+	</main>
+
+	<%- include('../includes/end.ejs') %>
