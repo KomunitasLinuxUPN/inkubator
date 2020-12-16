@@ -1,28 +1,34 @@
 <div class="navbar-fixed">
   <nav>
     <div class="nav-wrapper indigo darken-3" style="padding: 0 2rem">
+      <a href="/" class="hide-on-med-and-down">
+        <img class="logo-img" src="/favicon.ico" alt="Logo KoLU" />
+      </a>
       <a href="/" class="brand-logo">Inkubator</a>
       <a href="#" data-target="mobile-demo" class="sidenav-trigger">
         <i class="material-icons">menu</i>
       </a>
+
+      <!-- Desktop Navbar Menu -->
       <ul class="right hide-on-med-and-down">
         <li>
-          <a class="<%= path === '/login' ? 'active' : '' %>" href="/login">
-            SIGNIN
-          </a>
-        </li>
-        <li>
-          <a class="<%= path === '/signup' ? 'active' : '' %>" href="/signup">
-            SIGNUP
+          <a
+            class="<%= path === '/login' ? 'teal darken-1' : '' %>"
+            href="/login"
+          >
+            LOGIN
           </a>
         </li>
         <li>
           <a
-            class="teal darken-1"
-            target="_blank"
-            href="https://oprec.kolu.web.id/"
-            type="btn"
+            class="<%= path === '/signup' ? 'teal darken-1' : '' %>"
+            href="/signup"
           >
+            SIGNUP
+          </a>
+        </li>
+        <li>
+          <a target="_blank" href="https://oprec.kolu.web.id/" type="btn">
             OPREC KOLU!
           </a>
         </li>
@@ -31,6 +37,7 @@
   </nav>
 </div>
 
+<!-- Mobile Navbar Menu -->
 <ul class="sidenav" id="mobile-demo">
   <div
     class="valign-wrapper indigo darken-3"
@@ -57,17 +64,23 @@
     </div>
   </div>
   <li style="margin-top: 1rem">
-    <a class="<%= path === '/login' ? 'active' : '' %>" href="/login">
-      SIGNIN
+    <a
+      class="<%= path === '/login' ? 'teal darken-1 white-text' : '' %>"
+      href="/login"
+    >
+      LOGIN
     </a>
   </li>
   <li>
-    <a class="<%= path === '/signup' ? 'active' : '' %>" href="/signup">
+    <a
+      class="<%= path === '/signup' ? 'teal darken-1 white-text' : '' %>"
+      href="/signup"
+    >
       SIGNUP
     </a>
   </li>
   <li>
-    <a class="teal darken-1" target="_blank" href="https://oprec.kolu.web.id/">
+    <a target="_blank" href="https://oprec.kolu.web.id/">
       <span class="white-text">OPREC KOLU!</span>
     </a>
   </li>

@@ -2,3 +2,9 @@
   padding: 15px;
   margin: 2rem 0;
 }
+
+.logo-img {
+  max-height: 68px !important;
+  padding: 15px 0 !important;
+  margin-right: 15px;
+}
