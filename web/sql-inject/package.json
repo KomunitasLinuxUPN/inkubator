@@ -1,0 +1,22 @@
+{
+  "name": "sql-inject",
+  "version": "1.0.0",
+  "description": "Demo SQL Injection",
+  "main": "app.mjs",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/KomunitasLinuxUPN/inkubator.git"
+  },
+  "keywords": [
+    "sql-injection"
+  ],
+  "author": "mramirid",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/KomunitasLinuxUPN/inkubator/issues"
+  },
+  "homepage": "https://github.com/KomunitasLinuxUPN/inkubator#readme"
+}
