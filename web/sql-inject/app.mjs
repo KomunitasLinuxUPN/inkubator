@@ -7,6 +7,8 @@ import helmet from 'helmet';
 import compression from 'compression';
 import morgan from 'morgan';
 
+import authRouter from './routes/auth.mjs';
+
 /* Setup express extensions & helper middlewares ----- */
 
 const app = express();
@@ -25,11 +27,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 
 /* Setup our middlewares ----------------------------- */
 
-app.use('/', (_, res) => {
-  res.status(200).json({
-    message: 'Hello World',
-  });
-});
+app.use(authRouter);
 
 /* Spin up the server -------------------------------- */
 
