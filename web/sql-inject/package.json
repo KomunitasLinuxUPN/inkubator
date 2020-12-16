@@ -4,7 +4,8 @@
   "description": "Demo SQL Injection",
   "main": "app.mjs",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node app.mjs",
+    "dev": "nodemon app.mjs"
   },
   "repository": {
     "type": "git",
@@ -18,5 +19,19 @@
   "bugs": {
     "url": "https://github.com/KomunitasLinuxUPN/inkubator/issues"
   },
-  "homepage": "https://github.com/KomunitasLinuxUPN/inkubator#readme"
+  "homepage": "https://github.com/KomunitasLinuxUPN/inkubator#readme",
+  "devDependencies": {
+    "eslint": "^7.15.0",
+    "eslint-config-airbnb-base": "^14.2.1",
+    "eslint-plugin-import": "^2.22.1",
+    "nodemon": "^2.0.6"
+  },
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "compression": "^1.7.4",
+    "ejs": "^3.1.5",
+    "express": "^4.17.1",
+    "helmet": "^4.2.0",
+    "morgan": "^1.10.0"
+  }
 }
