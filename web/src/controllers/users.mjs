@@ -3,6 +3,19 @@ import { validationResult } from 'express-validator';
 
 import User from '../models/User.mjs';
 
+export const getUsers = async (_req, res, next) => {
+  try {
+    const [users] = await User.fetchAll();
+    res.render('users/index', {
+      users,
+      pageTitle: 'All Users',
+      path: '/users',
+    });
+  } catch (error) {
+    next(error);
+  }
+};
+
 export const getSignup = (req, res) => {
   const [message] = req.flash('error');
   res.render('users/signup', {
