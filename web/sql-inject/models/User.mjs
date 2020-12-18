@@ -15,16 +15,20 @@ class User {
     );
   }
 
-  static deleteById(id) {
-    return db.execute('DELETE FROM users WHERE users.id = ?', [id]);
-  }
-
   static fetchAll() {
     return db.execute('SELECT * FROM users');
   }
 
   static findById(id) {
     return db.execute('SELECT * FROM users WHERE users.id = ?', [id]);
+  }
+
+  static findByEmail(email) {
+    return db.execute('SELECT * FROM users WHERE users.email = ?', [email]);
+  }
+
+  static deleteById(id) {
+    return db.execute('DELETE FROM users WHERE users.id = ?', [id]);
   }
 }
 

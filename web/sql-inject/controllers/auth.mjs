@@ -15,7 +15,7 @@ export const getSignup = (req, res) => {
 };
 
 export const postSignup = async (req, res, next) => {
-  const { email, password } = req.body;
+  const { email, password, role } = req.body;
   const inputErrors = validationResult(req);
   const [firstInputError] = inputErrors.array();
 
@@ -25,13 +25,13 @@ export const postSignup = async (req, res, next) => {
       path: '/users/signup',
       errorMessage: firstInputError.msg,
       inputErrors: inputErrors.array(),
-      oldInput: { email, password },
+      oldInput: { email, password, role },
     });
   }
 
   try {
     const hashedPassword = await bcrypt.hash(password, 12);
-    const user = new User(null, email, hashedPassword, null);
+    const user = new User(null, email, hashedPassword, role);
     await user.save();
     return res.status(200).redirect('/users/login');
   } catch (error) {
