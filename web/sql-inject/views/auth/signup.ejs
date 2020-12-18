@@ -11,16 +11,17 @@
 					<div class="col s12 m6 offset-m3">
 						<section class="card">
 							<div class="card-content">
-								<p class="card-title black-text center-align">Sign In</p>
+								<p class="card-title black-text center-align">Sign Up</p>
 								<% if (errorMessage) { %>
 									<div class="card-panel small z-depth-0 red accent-2 card-flash">
 										<p class="white-text center-align"><%= errorMessage %></p>
 									</div>
 								<% } %>
-								<form>
+								<form accept="/users/signup" method="POST">
 									<div class="input-field s12">
 										<input 
 											id="email" 
+											name="email" 
 											type="email" 
 											class="validate" 
 											value="<%= oldInput.email %>"
@@ -30,16 +31,17 @@
 									<div class="input-field s12">
 										<input 
 											id="password" 
+											name="password" 
 											type="password" 
 											class="validate" 
 											value="<%= oldInput.password %>"
 										>
 										<label for="password">Password</label>
 									</div>
+									<div class="center-align">
+										<button class="btn" type="submit">SIGN UP</button>
+									</div>
 								</form>
-								<div class="center-align">
-									<input type="submit" class="btn" value="Sign In">
-								</div>
 							</div>
 						</section>
 					</div>

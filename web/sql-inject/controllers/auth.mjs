@@ -1,14 +1,42 @@
+import bcrypt from 'bcryptjs';
+import { validationResult } from 'express-validator';
+
+import User from '../models/User.mjs';
+
 export const getSignup = (req, res) => {
   const [message] = req.flash('error');
   res.render('auth/signup', {
     pageTitle: 'Signup',
-    path: '/signup',
-    errorMessage: message || 'Lorem ipsum',
+    path: '/users/signup',
+    errorMessage: message,
     inputErrors: [],
     oldInput: { email: '', password: '' },
   });
 };
 
-export const postSignup = (_, res) => {
-  res.status(200).json({ message: 'Hello World' });
+export const postSignup = async (req, res, next) => {
+  const { email, password } = req.body;
+  const inputErrors = validationResult(req);
+  const [firstInputError] = inputErrors.array();
+
+  if (!inputErrors.isEmpty()) {
+    return res.status(422).render('auth/signup', {
+      pageTitle: 'Signup',
+      path: '/users/signup',
+      errorMessage: firstInputError.msg,
+      inputErrors: inputErrors.array(),
+      oldInput: { email, password },
+    });
+  }
+
+  try {
+    const hashedPassword = await bcrypt.hash(password, 12);
+    const user = new User(null, email, hashedPassword, null);
+    await user.save();
+    return res.status(200).redirect('/users/login');
+  } catch (error) {
+    const operationError = new Error(error);
+    operationError.httpStatusCode = 500;
+    return next(operationError);
+  }
 };

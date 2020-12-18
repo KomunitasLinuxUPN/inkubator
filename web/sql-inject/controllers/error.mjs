@@ -5,7 +5,7 @@ export const get404 = (_req, res) => {
   });
 };
 
-export const serverErrorHandler = (_err, _req, res) => {
+export const get500 = (_err, _req, res) => {
   res.status(500).render('500', {
     pageTitle: 'Internal Server Error',
     path: '/500',

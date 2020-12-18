@@ -11,6 +11,7 @@ import compression from 'compression';
 import morgan from 'morgan';
 
 import authRouter from './routes/auth.mjs';
+import homepageRouter from './routes/homepage.mjs';
 import * as errorController from './controllers/error.mjs';
 
 dotenv.config();
@@ -38,9 +39,10 @@ app.use(morgan('combined', {
 
 /* Setup our middlewares ----------------------------- */
 
-app.use(authRouter);
+app.use('/', homepageRouter);
+app.use('/users', authRouter);
 app.use(errorController.get404);
-app.use(errorController.serverErrorHandler);
+app.use(errorController.get500);
 
 /* Spin up the server -------------------------------- */
 
