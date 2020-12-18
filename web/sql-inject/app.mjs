@@ -10,7 +10,7 @@ import helmet from 'helmet';
 import compression from 'compression';
 import morgan from 'morgan';
 
-import authRouter from './routes/auth.mjs';
+import usersRouter from './routes/users.mjs';
 import homepageRouter from './routes/homepage.mjs';
 import * as errorController from './controllers/error.mjs';
 
@@ -40,7 +40,7 @@ app.use(morgan('combined', {
 /* Setup our middlewares ----------------------------- */
 
 app.use('/', homepageRouter);
-app.use('/users', authRouter);
+app.use('/users', usersRouter);
 app.use(errorController.get404);
 app.use(errorController.get500);
 

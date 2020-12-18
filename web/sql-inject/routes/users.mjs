@@ -1,12 +1,12 @@
 import express from 'express';
 import { check, body } from 'express-validator';
 
-import * as authController from '../controllers/auth.mjs';
+import * as usersController from '../controllers/users.mjs';
 import User from '../models/User.mjs';
 
 const router = express.Router();
 
-router.get('/signup', authController.getSignup);
+router.get('/signup', usersController.getSignup);
 
 router.post('/signup',
   [
@@ -24,6 +24,22 @@ router.post('/signup',
       .isLength({ min: 5, max: 30 })
       .isAlphanumeric(),
   ],
-  authController.postSignup);
+  usersController.postSignup);
+
+router.get('/login', usersController.getLogin);
+
+router.post('/login',
+  [
+    body('email')
+      .trim()
+      .isEmail()
+      .withMessage('Enter a valid email'),
+    body('password', 'Enter your password with only number or text & at least 5 characters')
+      .isLength({ min: 5, max: 30 })
+      .isAlphanumeric(),
+  ],
+  usersController.postLogin);
+
+router.post('/logout', () => {});
 
 export default router;
