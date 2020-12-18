@@ -13,6 +13,14 @@
       <ul class="right hide-on-med-and-down">
         <li>
           <a
+            class="<%= path === '/users' ? 'teal darken-1' : '' %>"
+            href="/users"
+          >
+            USERS
+          </a>
+        </li>
+        <li>
+          <a
             class="<%= path === '/users/login' ? 'teal darken-1' : '' %>"
             href="/users/login"
           >
@@ -58,6 +66,14 @@
       </div>
     </div>
   </div>
+  <li style="margin-top: 1rem">
+    <a
+      class="<%= path === '/users' ? 'teal darken-1 white-text' : '' %>"
+      href="/users"
+    >
+      USERS
+    </a>
+  </li>
   <li style="margin-top: 1rem">
     <a
       class="<%= path === '/users/login' ? 'teal darken-1 white-text' : '' %>"

@@ -1,53 +1,39 @@
-  <%- include('../includes/head.ejs') %>
-</head>
+<%- include('../includes/layouts/start.ejs') %>
 
-<body>
-	<%- include('../includes/navigation.ejs') %>
-
-	<main class="valign-wrapper" style="width: 100%; height: 100%; position: absolute;">
-    <div class="valign" style="width: 100%;">
-			<div class="container">
-				<div class="row">
-					<div class="col s12 m6 offset-m3">
-						<section class="card">
-							<div class="card-content">
-								<p class="card-title black-text center-align">Login</p>
-								<% if (errorMessage) { %>
-									<div class="card-panel small z-depth-0 red accent-2 card-flash">
-										<p class="white-text center-align"><%= errorMessage %></p>
-									</div>
-								<% } %>
-								<form action="/users/login" method="POST">
-									<div class="input-field s12">
-										<input 
-											id="email" 
-											name="email" 
-											type="email" 
-											class="validate <%= inputErrors.find(input => input.param === 'email') ? 'invalid' : '' %>" 
-											value="<%= oldInput.email %>"
-										>
-										<label for="email">Email</label>
-									</div>
-									<div class="input-field s12">
-										<input 
-											id="password" 
-											name="password" 
-											type="password" 
-											class="validate <%= inputErrors.find(input => input.param === 'password') ? 'invalid' : '' %>" 
-											value="<%= oldInput.password %>"
-										>
-										<label for="password">Password</label>
-									</div>
-									<div class="center-align" style="margin-top: 2rem;">
-										<button class="btn amber darken-3" type="submit">LOGIN</button>
-									</div>
-								</form>
-							</div>
-						</section>
-					</div>
-				</div>
+<section class="card">
+  <div class="card-content">
+    <p class="card-title black-text center-align">Login</p>
+    <% if (errorMessage) { %>
+			<div class="card-panel small z-depth-0 red accent-2 card-flash">
+				<p class="white-text center-align"><%= errorMessage %></p>
 			</div>
-    </div>
-	</main>
+    <% } %>
+    <form action="/users/login" method="POST">
+      <div class="input-field s12">
+        <input
+          id="email"
+          name="email"
+          type="email"
+          class="validate <%= inputErrors.find(input => input.param === 'email') ? 'invalid' : '' %>"
+          value="<%= oldInput.email %>"
+        />
+        <label for="email">Email</label>
+      </div>
+      <div class="input-field s12">
+        <input
+          id="password"
+          name="password"
+          type="password"
+          class="validate <%= inputErrors.find(input => input.param === 'password') ? 'invalid' : '' %>"
+          value="<%= oldInput.password %>"
+        />
+        <label for="password">Password</label>
+      </div>
+      <div class="center-align" style="margin-top: 2rem">
+        <button class="btn amber darken-3" type="submit">LOGIN</button>
+      </div>
+    </form>
+  </div>
+</section>
 
-  <%- include('../includes/end.ejs') %>
+<%- include('../includes/layouts/end.ejs') %>
