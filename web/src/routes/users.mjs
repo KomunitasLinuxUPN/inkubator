@@ -6,6 +6,8 @@ import User from '../models/User.mjs';
 
 const router = express.Router();
 
+router.get('/', usersController.getIndex);
+
 router.get('/signup', usersController.getSignup);
 
 router.post('/signup',

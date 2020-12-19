@@ -3,7 +3,7 @@ import { validationResult } from 'express-validator';
 
 import User from '../models/User.mjs';
 
-export const getUsers = async (_req, res, next) => {
+export const getIndex = async (_req, res, next) => {
   try {
     const [users] = await User.fetchAll();
     res.render('users/index', {

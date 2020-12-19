@@ -16,7 +16,7 @@ class User {
   }
 
   static fetchAll() {
-    return db.execute('SELECT * FROM users');
+    return db.execute('SELECT id, email, role FROM users');
   }
 
   static findById(id) {

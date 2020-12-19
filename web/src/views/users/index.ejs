@@ -1,5 +1,33 @@
-<%- include('includes/layouts/start.ejs') %>
+<%- include('../includes/layouts/start.ejs') %>
 
-<h4 class="center-align">USERS</h4>
+<section class="card">
+  <div class="card-content">
+    <p class="card-title black-text center-align">Users</p>
+    <% if (users.length > 0) { %>
+      <table class="striped bordered responsive-table">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Email</th>
+            <th>Role</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% for (const user of users) { %> 
+            <tr>
+              <td><%= user.id %></td>
+              <td><%= user.email %></td>
+              <td><%= user.role %></td>
+            </tr>
+          <% } %> 
+        </tbody>
+      </table>
+    <% } else { %>
+      <h6 class="center-align" style="margin-top: 1.5rem;">
+        No data provided
+      </h6>
+    <% } %> 
+  </div>
+</section>
 
-<%- include('includes/layouts/end.ejs') %>
+<%- include('../includes/layouts/end.ejs') %>
