@@ -123,3 +123,17 @@ export const postLogout = (req, res, next) => {
     res.redirect('/');
   });
 };
+
+export const getProfile = async (req, res, next) => {
+  try {
+    res.render('users/profile', {
+      pageTitle: 'My Profile',
+      path: '/users/profile',
+      user: req.session.user,
+    });
+  } catch (error) {
+    const operationError = new Error(error);
+    operationError.httpStatusCode = 500;
+    next(operationError);
+  }
+};

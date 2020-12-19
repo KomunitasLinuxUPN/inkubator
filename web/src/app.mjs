@@ -15,7 +15,6 @@ import db from './utils/db.mjs';
 import usersRouter from './routes/users.mjs';
 import homepageRouter from './routes/homepage.mjs';
 import * as errorController from './controllers/error.mjs';
-import User from './models/User.mjs';
 
 dotenv.config();
 
@@ -48,23 +47,6 @@ app.use(session({
 app.use((req, res, next) => {
   res.locals.isAuthenticated = req.session.isAuthenticated || false;
   next();
-});
-
-app.use(async (req, _, next) => {
-  if (req.session && !req.session.user) {
-    return next();
-  }
-
-  try {
-    const user = await User.findByEmail(req.session.user.email);
-    if (!user) throw new Error('User not found');
-    req.user = user;
-    next();
-  } catch (error) {
-    const operationError = new Error(error);
-    operationError.httpStatusCode = 500;
-    next(operationError);
-  }
 });
 
 app.use('/', homepageRouter);

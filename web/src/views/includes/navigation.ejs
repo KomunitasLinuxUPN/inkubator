@@ -20,28 +20,36 @@
           </a>
         </li>
         <% if (!isAuthenticated) { %>
-        <li>
-          <a
-            class="<%= path === '/users/login' ? 'teal darken-1' : '' %>"
-            href="/users/login"
-          >
-            LOGIN
-          </a>
-        </li>
-        <li>
-          <a
-            class="<%= path === '/users/signup' ? 'teal darken-1' : '' %>"
-            href="/users/signup"
-          >
-            SIGNUP
-          </a>
-        </li>
+          <li>
+            <a
+              class="<%= path === '/users/login' ? 'teal darken-1' : '' %>"
+              href="/users/login"
+            >
+              LOGIN
+            </a>
+          </li>
+          <li>
+            <a
+              class="<%= path === '/users/signup' ? 'teal darken-1' : '' %>"
+              href="/users/signup"
+            >
+              SIGNUP
+            </a>
+          </li>
         <% } else { %>
-        <li>
-          <form id="form-logout" action="/users/logout" method="POST">
-            <a href="#" id="btn-logout">LOGOUT</a>
-          </form>
-        </li>
+          <li>
+            <a
+              class="<%= path === '/users/profile' ? 'teal darken-1' : '' %>"
+              href="/users/profile"
+            >
+              PROFILE
+            </a>
+          </li>
+          <li>
+            <form id="form-logout" action="/users/logout" method="POST">
+              <a href="#" id="btn-logout">LOGOUT</a>
+            </form>
+          </li>
         <% } %>
       </ul>
     </div>
@@ -101,9 +109,17 @@
     </li>
   <% } else { %>
     <li>
-      <form id="form-logout" action="/users/logout" method="POST">
-        <a href="#" id="btn-logout">LOGOUT</a>
-      </form>
+      <a
+        class="<%= path === '/users/profile' ? 'teal darken-1' : '' %>"
+        href="/users/profile"
+      >
+        PROFILE
+      </a>
     </li>
+    <form id="form-logout" action="/users/logout" method="POST">
+      <li>
+        <a href="#" id="btn-logout">LOGOUT</a>
+      </li>
+    </form>
   <% } %>
 </ul>
