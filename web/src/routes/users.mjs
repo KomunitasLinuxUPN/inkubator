@@ -22,9 +22,10 @@ router.post('/signup',
           throw new Error('The email is already in use');
         }
       }),
-    body('password', 'Enter password with only number or text & at least 5 characters')
+    body('password')
       .isLength({ min: 5, max: 30 })
-      .isAlphanumeric(),
+      .isAlphanumeric()
+      .withMessage('Enter password with only number or text & at least 5 characters'),
   ],
   usersController.postSignup);
 
@@ -36,12 +37,13 @@ router.post('/login',
       .trim()
       .isEmail()
       .withMessage('Enter a valid email'),
-    body('password', 'Enter your password with only number or text & at least 5 characters')
+    body('password')
       .isLength({ min: 5, max: 30 })
-      .isAlphanumeric(),
+      .isAlphanumeric()
+      .withMessage('Enter your password with only number or text & at least 5 characters'),
   ],
   usersController.postLogin);
 
-router.post('/logout', () => {});
+router.post('/logout', usersController.postLogout);
 
 export default router;

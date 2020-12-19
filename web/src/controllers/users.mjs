@@ -46,11 +46,11 @@ export const postSignup = async (req, res, next) => {
     const hashedPassword = await bcrypt.hash(password, 12);
     const user = new User(null, email, hashedPassword, role);
     await user.save();
-    return res.status(200).redirect('/users/login');
+    res.status(200).redirect('/users/login');
   } catch (error) {
     const operationError = new Error(error);
     operationError.httpStatusCode = 500;
-    return next(operationError);
+    next(operationError);
   }
 };
 
@@ -81,12 +81,12 @@ export const postLogin = async (req, res, next) => {
   }
 
   try {
-    // const inputErrors = [];
+    const inputErrors = [];
 
-    const user = await User.findOne({ email });
+    const [[user]] = await User.findByEmail(email);
     if (!user) inputErrors.push({ param: 'email' });
 
-    const doMatch = await bcrypt.compare(password, user?.password || '');
+    const doMatch = await bcrypt.compare(password, user.password_hash || '');
     if (!doMatch) inputErrors.push({ param: 'password' });
 
     if (!user || !doMatch) {
@@ -99,17 +99,27 @@ export const postLogin = async (req, res, next) => {
       });
     }
 
-    return 0;
-
-    // req.session!.user = user!
-    // req.session!.isAuthenticated = true
-    // req.session!.save(error => {
-    //   if (error) throw 'Failed to create session in the database'
-    //   res.redirect('/')
-    // })
+    req.session.isAuthenticated = true;
+    req.session.user = {
+      email: user.email,
+      role: user.role,
+    };
+    req.session.save((error) => {
+      if (error) throw new Error('Failed to create session in the database');
+      res.redirect('/');
+    });
   } catch (error) {
     const operationError = new Error(error);
     operationError.httpStatusCode = 500;
-    return next(operationError);
+    next(operationError);
   }
+};
+
+export const postLogout = (req, res, next) => {
+  req.session.destroy((error) => {
+    if (error) {
+      next(error);
+    }
+    res.redirect('/');
+  });
 };

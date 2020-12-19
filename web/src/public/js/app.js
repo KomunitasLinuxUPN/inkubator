@@ -5,4 +5,9 @@ $(document).ready(() => {
 
   // Materialize select option
   $('select').formSelect();
+
+  $('a#btn-logout').click(() => {
+    $('form#form-logout').submit();
+    return false;
+  });
 });

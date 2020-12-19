@@ -20,11 +20,14 @@ class User {
   }
 
   static findById(id) {
-    return db.execute('SELECT * FROM users WHERE users.id = ?', [id]);
+    return db.execute('SELECT * FROM users WHERE users.id = ? LIMIT 1', [id]);
   }
 
   static findByEmail(email) {
-    return db.execute('SELECT * FROM users WHERE users.email = ?', [email]);
+    return db.execute(
+      'SELECT * FROM users WHERE users.email = ? LIMIT 1',
+      [email],
+    );
   }
 
   static deleteById(id) {

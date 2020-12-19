@@ -12,6 +12,8 @@
 		"sourceType": "module"
 	},
 	"rules": {
+		"consistent-return": "off",
+		"no-shadow": "off",
 		"import/extensions": [
 			"error",
 			"ignorePackages",
