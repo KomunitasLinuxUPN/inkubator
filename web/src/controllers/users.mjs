@@ -1,4 +1,4 @@
-import bcrypt from 'bcryptjs';
+// import bcrypt from 'bcryptjs';
 import { validationResult } from 'express-validator';
 
 import User from '../models/User.mjs';
@@ -43,8 +43,8 @@ export const postSignup = async (req, res, next) => {
   }
 
   try {
-    const hashedPassword = await bcrypt.hash(password, 12);
-    const user = new User(null, email, hashedPassword, role);
+    // const hashedPassword = await bcrypt.hash(password, 12);
+    const user = new User(null, email, password, role);
     await user.save();
     res.status(200).redirect('/users/login');
   } catch (error) {
@@ -86,7 +86,8 @@ export const postLogin = async (req, res, next) => {
     const [[user]] = await User.findByEmail(email);
     if (!user) inputErrors.push({ param: 'email' });
 
-    const doMatch = await bcrypt.compare(password, user.password_hash || '');
+    // const doMatch = await bcrypt.compare(password, user?.password_hash || '');
+    const doMatch = password === user?.password_hash;
     if (!doMatch) inputErrors.push({ param: 'password' });
 
     if (!user || !doMatch) {
