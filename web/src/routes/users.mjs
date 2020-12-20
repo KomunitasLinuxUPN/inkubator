@@ -1,6 +1,7 @@
 import express from 'express';
 import { check, body } from 'express-validator';
 
+import requireAuth from '../middlewares/require-auth.mjs';
 import * as usersController from '../controllers/users.mjs';
 import User from '../models/User.mjs';
 
@@ -14,7 +15,7 @@ import User from '../models/User.mjs';
  */
 const router = express.Router();
 
-router.get('/', usersController.getIndex);
+router.get('/', requireAuth, usersController.getIndex);
 
 router.get('/signup', usersController.getSignup);
 
@@ -60,8 +61,8 @@ router.post('/login',
   ],
   usersController.postLogin);
 
-router.post('/logout', usersController.postLogout);
+router.post('/logout', requireAuth, usersController.postLogout);
 
-router.get('/profile', usersController.getProfile);
+router.get('/profile', requireAuth, usersController.getProfile);
 
 export default router;

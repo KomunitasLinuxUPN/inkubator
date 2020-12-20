@@ -11,14 +11,6 @@
 
       <!-- Desktop Navbar Menu -->
       <ul class="right hide-on-med-and-down">
-        <li>
-          <a
-            class="<%= path === '/users' ? 'teal darken-1' : '' %>"
-            href="/users"
-          >
-            USERS
-          </a>
-        </li>
         <% if (!isAuthenticated) { %>
           <li>
             <a
@@ -37,6 +29,14 @@
             </a>
           </li>
         <% } else { %>
+          <li>
+            <a
+              class="<%= path === '/users' ? 'teal darken-1' : '' %>"
+              href="/users"
+            >
+              USERS
+            </a>
+          </li>
           <li>
             <a
               class="<%= path === '/users/profile' ? 'teal darken-1' : '' %>"
@@ -82,14 +82,6 @@
       </div>
     </div>
   </div>
-  <li>
-    <a
-      class="<%= path === '/users' ? 'teal darken-1 white-text' : '' %>"
-      href="/users"
-    >
-      USERS
-    </a>
-  </li>
   <% if (!isAuthenticated) { %>
     <li>
       <a
@@ -108,6 +100,14 @@
       </a>
     </li>
   <% } else { %>
+    <li>
+      <a
+        class="<%= path === '/users' ? 'teal darken-1 white-text' : '' %>"
+        href="/users"
+      >
+        USERS
+      </a>
+    </li>
     <li>
       <a
         class="<%= path === '/users/profile' ? 'teal darken-1 white-text' : '' %>"
