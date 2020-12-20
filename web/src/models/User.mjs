@@ -1,8 +1,9 @@
 import db from '../utils/db.mjs';
 
 class User {
-  constructor(id, email, hashedPassword, role) {
+  constructor(id, name, email, hashedPassword, role) {
     this.id = id;
+    this.name = name;
     this.email = email;
     this.hashedPassword = hashedPassword;
     this.role = role;
@@ -10,17 +11,13 @@ class User {
 
   save() {
     return db.execute(
-      'INSERT INTO users (email, password_hash, role) VALUES (?, ?, ?)',
-      [this.email, this.hashedPassword, this.role],
+      'INSERT INTO users (name, email, password_hash, role) VALUES (?, ?, ?, ?)',
+      [this.name, this.email, this.hashedPassword, this.role],
     );
   }
 
   static fetchAll() {
-    return db.execute('SELECT id, email, role FROM users');
-  }
-
-  static findById(id) {
-    return db.execute('SELECT * FROM users WHERE users.id = ? LIMIT 1', [id]);
+    return db.execute('SELECT id, name, email, role FROM users');
   }
 
   static findByEmail(email) {
@@ -28,10 +25,6 @@ class User {
       'SELECT * FROM users WHERE users.email = ? LIMIT 1',
       [email],
     );
-  }
-
-  static deleteById(id) {
-    return db.execute('DELETE FROM users WHERE users.id = ?', [id]);
   }
 }
 

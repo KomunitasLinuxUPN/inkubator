@@ -11,6 +11,16 @@
     <form action="/users/signup" method="POST">
       <div class="input-field s12">
         <input
+          id="name"
+          name="name"
+          type="text"
+          class="validate <%= inputErrors.find(input => input.param === 'name') ? 'invalid' : '' %>"
+          value="<%= oldInput.name %>"
+        />
+        <label for="name">Name</label>
+      </div>
+      <div class="input-field s12">
+        <input
           id="email"
           name="email"
           type="email"
@@ -31,8 +41,8 @@
       </div>
       <div class="input-field s12">
         <select id="roles" name="role">
-          <option value="user" selected>User</option>
-          <option value="admin">Admin</option>
+          <option value="user" <%= oldInput.role === 'user' ? 'selected' : '' %>>User</option>
+          <option value="admin" <%= oldInput.role === 'admin' ? 'selected' : '' %>>Admin</option>
         </select>
         <label>Role</label>
       </div>

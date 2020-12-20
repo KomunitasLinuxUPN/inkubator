@@ -4,6 +4,14 @@ import { check, body } from 'express-validator';
 import * as usersController from '../controllers/users.mjs';
 import User from '../models/User.mjs';
 
+/**
+ * Sub-route /users/*
+ *        -> /users/
+ *        -> /users/signup
+ *        -> /users/login
+ *        -> /users/logout
+ *        -> /users/profile
+ */
 const router = express.Router();
 
 router.get('/', usersController.getIndex);
@@ -12,6 +20,12 @@ router.get('/signup', usersController.getSignup);
 
 router.post('/signup',
   [
+    body('name')
+      .trim()
+      .isString()
+      .not()
+      .isEmpty()
+      .withMessage('Enter your name'),
     check('email')
       .trim()
       .isEmail()
