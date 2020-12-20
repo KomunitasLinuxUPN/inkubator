@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Dec 20, 2020 at 01:55 AM
+-- Generation Time: Dec 20, 2020 at 02:56 AM
 -- Server version: 8.0.21
 -- PHP Version: 7.2.19
 
@@ -29,6 +29,7 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `users` (
   `id` bigint UNSIGNED NOT NULL,
+  `name` varchar(255) NOT NULL,
   `email` varchar(60) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
   `password_hash` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
   `role` enum('admin','user') CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL
