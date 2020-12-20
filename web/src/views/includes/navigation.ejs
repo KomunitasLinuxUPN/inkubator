@@ -47,6 +47,7 @@
           </li>
           <li>
             <form id="form-logout" action="/users/logout" method="POST">
+              <input type="hidden" name="_csrf" value="<%= csrfToken %>" />
               <a href="#" id="btn-logout">LOGOUT</a>
             </form>
           </li>
@@ -118,6 +119,7 @@
     </li>
     <form id="form-logout" action="/users/logout" method="POST">
       <li>
+        <input type="hidden" name="_csrf" value="<%= csrfToken %>" />
         <a href="#" id="btn-logout">LOGOUT</a>
       </li>
     </form>

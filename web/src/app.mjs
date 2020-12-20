@@ -7,6 +7,7 @@ import mysqlSession from 'express-mysql-session';
 import session from 'express-session';
 import flash from 'connect-flash';
 import bodyParser from 'body-parser';
+import csrf from 'csurf';
 import helmet from 'helmet';
 import compression from 'compression';
 import morgan from 'morgan';
@@ -42,10 +43,13 @@ app.use(session({
   store: sessionStore,
 }));
 
+app.use(csrf());
+
 /* Setup our middlewares ---------------------------------------------------- */
 
 app.use((req, res, next) => {
   res.locals.isAuthenticated = req.session.isAuthenticated || false;
+  res.locals.csrfToken = req.csrfToken();
   next();
 });
 

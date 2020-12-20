@@ -4,9 +4,9 @@
   <div class="card-content">
     <p class="card-title black-text center-align">Login</p>
     <% if (errorMessage) { %>
-			<div class="card-panel small z-depth-0 red accent-2 card-flash">
-				<p class="white-text center-align"><%= errorMessage %></p>
-			</div>
+    <div class="card-panel small z-depth-0 red accent-2 card-flash">
+      <p class="white-text center-align"><%= errorMessage %></p>
+    </div>
     <% } %>
     <form action="/users/login" method="POST">
       <div class="input-field s12">
@@ -29,6 +29,7 @@
         />
         <label for="password">Password</label>
       </div>
+      <input type="hidden" name="_csrf" value="<%= csrfToken %>" />
       <div class="center-align" style="margin-top: 2rem">
         <button class="btn teal darken-1" type="submit">LOGIN</button>
       </div>
