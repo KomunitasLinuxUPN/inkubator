@@ -4,7 +4,7 @@ import { check, body } from 'express-validator';
 import * as usersController from '../controllers/users.mjs';
 import User from '../models/User.mjs';
 
-/**
+/*
  * Sub-route /users/*
  *        -> /users/
  *        -> /users/signup
@@ -33,7 +33,9 @@ router.post('/signup',
       .custom(async (email) => {
         const [existingUsers] = await User.findByEmail(email);
         if (existingUsers.length > 0) {
-          throw new Error('The email is already in use');
+          const operationError = new Error('The email is already in use');
+          operationError.httpStatusCode = 409;
+          throw operationError;
         }
       }),
     body('password')

@@ -54,7 +54,7 @@ export const postSignup = async (req, res, next) => {
     res.status(200).redirect('/users/login');
   } catch (error) {
     const operationError = new Error(error);
-    operationError.httpStatusCode = 500;
+    operationError.statusCode = 500;
     next(operationError);
   }
 };
@@ -117,7 +117,7 @@ export const postLogin = async (req, res, next) => {
     });
   } catch (error) {
     const operationError = new Error(error);
-    operationError.httpStatusCode = 500;
+    operationError.statusCode = 500;
     next(operationError);
   }
 };
@@ -140,7 +140,7 @@ export const getProfile = async (req, res, next) => {
     });
   } catch (error) {
     const operationError = new Error(error);
-    operationError.httpStatusCode = 500;
+    operationError.statusCode = 500;
     next(operationError);
   }
 };
