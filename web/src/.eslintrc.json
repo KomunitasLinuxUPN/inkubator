@@ -14,6 +14,7 @@
 	"rules": {
 		"consistent-return": "off",
 		"no-shadow": "off",
+		"linebreak-style": "off",
 		"import/extensions": [
 			"error",
 			"ignorePackages",
