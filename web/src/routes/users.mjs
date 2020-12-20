@@ -24,12 +24,14 @@ router.post('/signup',
     body('name')
       .trim()
       .isString()
+      .escape()
       .not()
       .isEmpty()
       .withMessage('Enter your name'),
     check('email')
       .trim()
       .isEmail()
+      .escape()
       .withMessage('Enter a valid email')
       .custom(async (email) => {
         const [existingUsers] = await User.findByEmail(email);
